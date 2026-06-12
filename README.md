@@ -54,3 +54,11 @@ jellyfish count -C -m ${KMER} -s ${HASH_SIZE} -t ${THREADS} <(zcat ${READS}) -o 
 jellyfish histo -t ${THREADS} ${OUTDIR}/${SAMPLE}.k${KMER}.jf > ${OUTDIR}/${SAMPLE}.k${KMER}.histo
 
 
+
+<img width="1651" height="844" alt="Screenshot 2026-06-12 at 4 28 59 AM" src="https://github.com/user-attachments/assets/cc714e00-18cf-401e-928a-0b6c7a4bcc00" />
+
+<img width="1633" height="818" alt="Screenshot 2026-06-12 at 10 37 05 AM" src="https://github.com/user-attachments/assets/c2c99c08-8554-450e-84f7-2f6d26499655" />
+
+
+
+
