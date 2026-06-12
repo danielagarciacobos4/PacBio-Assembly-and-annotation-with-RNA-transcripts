@@ -58,6 +58,17 @@ jellyfish histo -t ${THREADS} ${OUTDIR}/${SAMPLE}.k${KMER}.jf > ${OUTDIR}/${SAMP
 
 <img width="1633" height="818" alt="Screenshot 2026-06-12 at 10 37 05 AM" src="https://github.com/user-attachments/assets/c2c99c08-8554-450e-84f7-2f6d26499655" />
 
+### Summary of Results
+
+* Homozygous Profile (aa):	85.2%	Proportion of 21-mer blocks sharing identical homologous alleles.
+
+| Genomic Metric | Value from Plot | Notes / Interpretation |
+| :--- | :--- | :--- |
+| **Homozygous Profile (`aa`)** | **85.2%** | Proportion of $k$-mer blocks sharing identical homologous alleles. |
+| **Heterozygous Profile (`ab`)** | **14.8%** | Proportion of 21-mer blocks containing at least one variable site. |
+| **K-mer Coverage Peak (`kcov`)**| **57.1$\times$** | High-quality sequencing depth, providing robust assembly power. |
+| **Model Sequencing Error Rate** | **0.462%** | Estimated base-calling error rate, typical for highly accurate HiFi data. |
+| **True Heterozygosity Rate** | *Check `summary.txt`* | The actual nucleotide heterozygosity rate (found in your summary text file). |
 
 
 
