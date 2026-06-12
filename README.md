@@ -68,7 +68,9 @@ jellyfish histo -t ${THREADS} ${OUTDIR}/${SAMPLE}.k${KMER}.jf > ${OUTDIR}/${SAMP
 | **Heterozygous Profile (`ab`)** | **14.8%** | Proportion of 21-mer blocks containing at least one variable site. |
 | **K-mer Coverage Peak (`kcov`)**| **57.1$\times$** | High-quality sequencing depth, providing robust assembly power. |
 | **Model Sequencing Error Rate** | **0.462%** | Estimated base-calling error rate, typical for highly accurate HiFi data. |
-| **True Heterozygosity Rate** | *Check `summary.txt`* | The actual nucleotide heterozygosity rate (found in your summary text file). |
+| **Estimated Heterozygosity Rate** | **~0.76%** | Mathematically derived from the $ab$ fraction ($1 - (1 - 0.148)^{1/21}$). |
+
+
 
 
 
