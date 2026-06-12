@@ -1,3 +1,4 @@
+<img width="1544" height="820" alt="Screenshot 2026-06-12 at 10 30 37 AM" src="https://github.com/user-attachments/assets/479def66-1378-454b-9ba5-210a115fd58c" />
 # PacBio Assembly and Annotation of *Helicops angulatus*
 
 This repository documents the complete bioinformatic pipeline used to assemble, scaffold, and annotate the reference genome of the South American water snake, *Helicops angulatus* (Specimen IAvH-10017).
@@ -51,3 +52,5 @@ jellyfish count -C -m ${KMER} -s ${HASH_SIZE} -t ${THREADS} <(zcat ${READS}) -o 
 
 # Histogram generation
 jellyfish histo -t ${THREADS} ${OUTDIR}/${SAMPLE}.k${KMER}.jf > ${OUTDIR}/${SAMPLE}.k${KMER}.histo
+
+
