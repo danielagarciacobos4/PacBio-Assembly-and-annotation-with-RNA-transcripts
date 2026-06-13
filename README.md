@@ -89,9 +89,9 @@ The assembly was executed on the SLURM cluster. To handle the highly repetitive 
 The -l flag in hifiasm controls the Level of Purge Duplication. There are four operational levels available:
 
 * l0 (Disable): Turns off purging entirely. Used only for highly inbred/homozygous lines or when providing external trio-binning data (parental short reads).
-* l1 (Light): Only purges contained haplotigs. If a smaller contig is completely identical to a sub-region of a larger contig, it gets removed.
-* l2 (Moderate): Purges all types of haplotigs, including both contained and overlapping sequences.
-* l3 (Aggressive): Purges all types of haplotigs in the most aggressive mathematical way, lowering the similarity threshold to force the collapse of highly divergent alleles.
+* l1 (Light): Only purges contained haplotigs. If a smaller contig is completely identical to a sub-region of a larger contig, it gets removed. If a shorter piece of DNA starts and ends entirely inside a larger, almost identical piece of DNA, it assumes the short piece is just the redundant maternal/paternal copy.
+* l2 (Moderate): Purges all types of haplotigs, including both contained and overlapping sequences. Expands its search. It now looks for both perfectly contained bubbles AND these dangling, overlapping alternate alleles.
+* l3 (Aggressive): Purges all types of haplotigs in the most aggressive mathematical way, lowering the similarity threshold to force the collapse of highly divergent alleles. It forces the algorithm to assume that even if two paths look quite divergent or heavily mutated, as long as their surrounding graph topology looks like they are alleles, they should be collapsed.
 
 If you don't explicitly specify the -l flag in your hifiasm command, the default behavior is -l3 (Aggressive purging).
 
