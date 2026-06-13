@@ -86,6 +86,15 @@ Following $k$-mer characterization, we initiated the primary *de novo* assembly 
 
 The assembly was executed on the SLURM cluster. To handle the highly repetitive nature of the genome, we aggressively purged haplotig duplications (using the `-l3` parameter) to prevent homologous regions from assembling as separate, false-duplicate contigs.
 
+The -l flag in hifiasm controls the Level of Purge Duplication. There are four operational levels available:
+
+* l0 (Disable): Turns off purging entirely. Used only for highly inbred/homozygous lines or when providing external trio-binning data (parental short reads).
+* l1 (Light): Only purges contained haplotigs. If a smaller contig is completely identical to a sub-region of a larger contig, it gets removed.
+* l2 (Moderate): Purges all types of haplotigs, including both contained and overlapping sequences.
+* l3 (Aggressive): Purges all types of haplotigs in the most aggressive mathematical way, lowering the similarity threshold to force the collapse of highly divergent alleles.
+
+If you don't explicitly specify the -l flag in your hifiasm command, the default behavior is -l3 (Aggressive purging).
+
 #### SLURM Job Script: Hifiasm Assembly
 ```bash
 #!/bin/bash
@@ -121,6 +130,9 @@ hifiasm \
   ${READS} \
   2> Helicops_angulatus_IAvH_10017.hifiasm_l3.log
 ```
+
+
+
 
 
 
