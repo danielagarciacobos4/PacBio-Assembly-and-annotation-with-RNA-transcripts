@@ -70,7 +70,9 @@ jellyfish histo -t ${THREADS} ${OUTDIR}/${SAMPLE}.k${KMER}.jf > ${OUTDIR}/${SAMP
 | **Model Sequencing Error Rate** | **0.462%** | Estimated base-calling error rate, typical for highly accurate HiFi data. |
 | **Estimated Heterozygosity Rate** | **~0.76%** | Mathematically derived from the $ab$ fraction ($1 - (1 - 0.148)^{1/21}$). |
 
-
+* The Heterozygous Peak (First Blue Mountain): Distinctly located at half-coverage (~28$\times$), this prominent peak represents polymorphic alleles. Its substantial height relative to the main peak confirms a biologically significant degree of genetic variation (~0.76%).
+* The Homozygous Main Peak (Highest Blue Mountain): Centered at $57.1\times$, this dominant peak captures the genomic regions where maternal and paternal chromosomes match identically, establishing our true sequencing coverage depth.
+* The estimated model length (~727 Mb) represents a severe underestimation of the true haploid size (~2.16 Gb). This artifact is caused by GenomeScope filtering out high-frequency repetitive strings to run its calculations.
 
 
 
