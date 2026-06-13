@@ -75,4 +75,53 @@ jellyfish histo -t ${THREADS} ${OUTDIR}/${SAMPLE}.k${KMER}.jf > ${OUTDIR}/${SAMP
 * The estimated model length (~727 Mb) represents a severe underestimation of the true haploid size (~2.16 Gb). This artifact is caused by GenomeScope filtering out high-frequency repetitive strings to run its calculations.
 
 
+## 2. Contig Assembly with Hifiasm
+
+### Objectives
+Following $k$-mer characterization, we initiated the primary *de novo* assembly using **hifiasm**. The goal of this step was to construct highly contiguous, partially phased primary and alternate pseudohaplotypes directly from the PacBio HiFi reads, taking advantage of the empirical sequence variation to resolve homologous chromosomes.
+
+---
+
+### Workflow & Scripts
+
+The assembly was executed on the SLURM cluster. To handle the highly repetitive nature of the genome, we aggressively purged haplotig duplications (using the `-l3` parameter) to prevent homologous regions from assembling as separate, false-duplicate contigs.
+
+#### SLURM Job Script: Hifiasm Assembly
+```bash
+#!/bin/bash
+#SBATCH --job-name=hifiasm_angulatus
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=dgarcia@amnh.org
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=250G
+#SBATCH --time=3-00:00:00
+#SBATCH --output=hifiasm_H.angulatus_l3_%j.out
+#SBATCH --error=hifiasm_H.angulatus_l3%j.err
+
+source ~/.bash_profile
+conda activate assembly
+
+cd /home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/hifiasm_assembly/hifiasm_assembly_l3
+
+############################
+# USER PARAMETERS
+############################
+READS="/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/Data-X202SC26050352-Z01-F001/RP_10017/Revio/FPAC260238538-1A/RP_10017.hifi_reads.fastq.gz"
+
+############################
+# DE NOVO ASSEMBLY
+############################
+hifiasm \
+  -o Helicops_angulatus_IAvH_10017.l3 \
+  -t 32 \
+  -l3 \
+  ${READS} \
+  2> Helicops_angulatus_IAvH_10017.hifiasm_l3.log
+```
+
+
+
 
