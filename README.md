@@ -160,12 +160,12 @@ To assess the biological completeness of the assembly, we ran BUSCO against the 
 
 ---
 
-### Biological & Technical Interpretation
+### Result Interpretation
 
-1. **Exceptional Initial Contiguity:** Achieving a **Contig N50 of ~131.6 Mb** straight out of the assembler (prior to any Hi-C scaffolding) is a phenomenal result. An L50 of 7 means that half of the entire 2.16 Gb genome is contained within just 7 massive DNA segments. Given that the largest contig is ~215.9 Mb, `hifiasm` has successfully assembled entire chromosomal arms—or even complete macrochromosomes—telomere-to-telomere without gaps.
-2. **True Haploid Size Resolution:** The final assembly length is **~2.16 Gb**. This perfectly recaptures the massive highly-repetitive fraction of the genome that GenomeScope 1.0 struggled to model mathematically, confirming that the true physical size of the *Helicops angulatus* haploid genome is >2 Gb.
-3. **Validation of the `-l3` Purge Parameter:** The BUSCO duplication rate is incredibly low (**1.5%**). This is the ultimate proof that our aggressive `-l3` purging strategy worked perfectly. If `hifiasm` had failed to collapse the maternal and paternal haplotypes in this highly heterozygous/repetitive genome, the duplication rate would have spiked artificially. Instead, we have a clean, true $1N$ haploid representation.
-4. **High Gene Completeness:** Recovering **93.2%** of the core Sauropsida orthologs completely intact indicates a highly accurate and biologically viable reference genome. The 5.7% missing fraction is typical for divergent Neotropical snake lineages compared to the basal models used in the `odb10` database, representing genuine evolutionary divergence rather than poor assembly quality.
+1. **Contiguity:** Achieving a **Contig N50 of ~131.6 Mb** straight out of the assembler (prior to any Hi-C scaffolding) is a great result. An L50 of 7 means that half of the entire 2.16 Gb genome is contained within just 7 massive DNA segments. Given that the largest contig is ~215.9 Mb, `hifiasm` has successfully assembled entire chromosomal arms—or even complete macrochromosomes—telomere-to-telomere without gaps.
+2. **Haploid Size Resolution:** The final assembly length is **~2.16 Gb**. This recaptures the massive highly-repetitive fraction of the genome (see below) that GenomeScope 1.0 struggled to model mathematically, confirming that the true physical size of the *Helicops angulatus* haploid genome is >2 Gb.
+3. **Validation of the `-l3` Purge Parameter:** The BUSCO duplication rate is low (**1.5%**). 
+4. **High Gene Completeness:** Recovering **93.2%** of the core Sauropsida orthologs completely intact indicates a highly accurate and biologically viable reference genome.
 
 
 
