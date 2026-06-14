@@ -168,7 +168,53 @@ To assess the biological completeness of the assembly, we ran BUSCO against the 
 4. **High Gene Completeness:** Recovering **93.2%** of the core Sauropsida orthologs completely intact indicates a highly accurate and biologically viable reference genome.
 
 
+## 3. Reference-Free Quality Evaluation (Merqury)
 
+### Objectives
+To rigorously evaluate the base-level accuracy and structural completeness of the primary assembly without introducing reference biases. We utilized **Merqury**, a $k$-mer-based evaluation tool, to cross-reference the raw PacBio HiFi sequencing reads against the assembled contigs.
+
+---
+
+### Workflow & Scripts
+
+The evaluation was performed in two steps:
+1. **Meryl** was used to build a comprehensive database of all valid 21-mers present in the raw sequencing data.
+2. **Merqury** compared this empirical database against the `.p_ctg.fasta` assembly to calculate the Consensus Quality Value (QV) and $k$-mer completeness.
+
+#### SLURM Job Script: Meryl & Merqury
+```bash
+#!/bin/bash
+#SBATCH --job-name=merqury_angulatus
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=150G
+#SBATCH --time=48:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=dgarcia@amnh.org
+#SBATCH --output=merqury_%j.out
+#SBATCH --error=merqury_%j.err
+
+source ~/.bash_profile
+mamba activate merqury_env
+
+WORKDIR="/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/hifiasm_assembly/hifiasm_assembly_l3/merqury"
+mkdir -p ${WORKDIR}
+cd ${WORKDIR}
+
+READS="/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/Data-X202SC26050352-Z01-F001/RP_10017/Revio/FPAC260238538-1A/RP_10017.hifi_reads.fastq.gz"
+ASM="/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/hifiasm_assembly/hifiasm_assembly_l3/Helicops_angulatus_IAvH_10017.l3.bp.p_ctg.fasta"
+
+PREFIX="H_angulatus_primary"
+KMER=21
+
+# 1. Build k-mer database
+meryl count k=${KMER} threads=${SLURM_CPUS_PER_TASK} memory=140 ${READS} output ${WORKDIR}/reads.meryl
+
+# 2. Run Merqury evaluation
+merqury.sh ${WORKDIR}/reads.meryl ${ASM} ${PREFIX}
+```
 
 
 
