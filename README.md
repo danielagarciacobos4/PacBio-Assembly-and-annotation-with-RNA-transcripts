@@ -216,6 +216,18 @@ meryl count k=${KMER} threads=${SLURM_CPUS_PER_TASK} memory=140 ${READS} output 
 merqury.sh ${WORKDIR}/reads.meryl ${ASM} ${PREFIX}
 ```
 
+### Results
+
+| Metric | Value | 
+| :--- | :--- | 
+| **K-mer Completeness** | **95.23%** | 
+| **Consensus Quality Value (QV)** | **71.58** | 
+| **Calculated Error Rate** | **6.95e-08** | 
+
+* A Consensus QV of 71.58 is a remarkably high accuracy score, highlighting the immense power of PacBio HiFi's circular consensus sequencing (CCS). It guarantees that the nucleotide sequence exceeds 99.99999% accuracy (less than 1 sequence error per 10 million base pairs)
+* The score of 95.23% means that the vast majority of the biological information sequenced from the snake was successfully stitched into your primary contigs.
+
+
 
 
 
