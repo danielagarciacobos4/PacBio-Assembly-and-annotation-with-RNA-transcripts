@@ -308,6 +308,7 @@ The Hi-C scaffolding was performed using **YaHS**. The tables below demonstrate 
 | **Gaps / N_count**| 0 | 92 / 9,200 | Representing 9,200 `N`s |
 
 **Macro-Chromosome Resolution (N50 & L50):** The primary long-read assembly was already remarkably successful at resolving the massive macro-chromosomes typical of snake genomes. Because the Contig N50 and Scaffold N50 are virtually identical (~131 Mb), it proves that `hifiasm` had natively traversed major centromeric boundaries. 
+
 **Structural Error Correction & Gap Introduction:** The scaffolding process introduced 92 physical gaps (exactly 9,200 undefined `N` bases). Concurrently, the total sequence count increased slightly from 140 to 178. This indicates that the algorithm identified structural misassemblies in the initial graph—such as false inversions or chimeric contigs—actively broke them, and re-oriented them using physical proximity constraints to reflect the true biological karyotype.
 
 
