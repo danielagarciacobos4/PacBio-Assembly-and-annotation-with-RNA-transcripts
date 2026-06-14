@@ -227,6 +227,56 @@ merqury.sh ${WORKDIR}/reads.meryl ${ASM} ${PREFIX}
 * A Consensus QV of 71.58 is a remarkably high accuracy score, highlighting the immense power of PacBio HiFi's circular consensus sequencing (CCS). It guarantees that the nucleotide sequence exceeds 99.99999% accuracy (less than 1 sequence error per 10 million base pairs)
 * The score of 95.23% means that the vast majority of the biological information sequenced from the snake was successfully stitched into your primary contigs.
 
+## 4. Chromosome-Level Scaffolding (Hi-C)
+
+### Objectives
+To elevate the highly contiguous primary assembly to a full chromosome-level reference. By analyzing the 3D physical interactions of the DNA within the nucleus using Hi-C sequencing, we aimed to anchor, order, and orient the massive `.p_ctg` contigs into complete macro- and micro-chromosomes.
+
+### Workflow & Scripts
+Hi-C reads were mapped against the primary assembly to generate spatial contact maps. A scaffolding algorithm was then applied to mathematically link the contigs. Finally, the automated scaffolds were visualized as a contact heatmap for manual curation to correct any structural misassemblies or inversions.
+
+#### SLURM Job Script: Hi-C Alignment & Scaffolding
+```bash
+#!/bin/bash
+#SBATCH --job-name=hic_scaffolding
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=200G
+#SBATCH --time=48:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=dgarcia@amnh.org
+#SBATCH --output=/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/hic_scaffolding/hic_scaffolding_%j.out
+#SBATCH --error=/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/hic_scaffolding/hic_scaffolding_%j.err
+
+source ~/.bash_profile
+conda activate scaffolding_env
+
+WORKDIR="/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/hic_scaffolding"
+cd ${WORKDIR}
+
+############################
+# USER PARAMETERS
+############################
+ASM="/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/hifiasm_assembly/hifiasm_assembly_l3/Helicops_angulatus_IAvH_10017.l3.bp.p_ctg.fasta"
+HIC_R1="/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/HiC/HiC_R1.fastq.gz"
+HIC_R2="/home/dgarcia/mendel-nas1/PacBio/H.angulatus_IAvH_10017/HiC/HiC_R2.fastq.gz"
+PREFIX="H_angulatus_scaffolded"
+
+############################
+# ALIGNMENT & SCAFFOLDING
+############################
+# 1. Align Hi-C reads to the primary assembly
+chromap -i -r ${ASM} -o ${WORKDIR}/asm.index
+chromap --preset hic -r ${ASM} -x ${WORKDIR}/asm.index -1 ${HIC_R1} -2 ${HIC_R2} --SAM -o ${WORKDIR}/aligned_hic.sam -t ${SLURM_CPUS_PER_TASK}
+
+# 2. Run Scaffolding 
+yahs ${ASM} ${WORKDIR}/aligned_hic.sam -o ${PREFIX}
+```
+
+
+
 
 
 
