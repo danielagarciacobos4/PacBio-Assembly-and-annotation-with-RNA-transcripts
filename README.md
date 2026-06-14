@@ -291,6 +291,19 @@ chromap --preset hic -r ${ASM} -x ${WORKDIR}/asm.index -1 ${HIC_R1} -2 ${HIC_R2}
 yahs ${ASM} ${WORKDIR}/aligned_hic.sam -o ${PREFIX}
 ```
 
+### Summary of Scaffolding Results
+
+The Hi-C scaffolding was performed using **YaHS**. The tables below demonstrate the structural refinement from the primary `hifiasm` (-l3) contigs to the final Hi-C scaffolds.
+
+| Metric | Primary Contigs (Hifiasm -l3) | Final Scaffolds (YaHS) | Delta / Notes |
+| :--- | :--- | :--- | :--- |
+| **Total Length** | 2,167,390,149 bp | 2,167,399,349 bp | **+ 9,200 bp** (Spacer 'N's) |
+| **Total Sequences** | 140 | 178 | **+ 38** (Structural breaks/edits) |
+| **Largest Sequence** | 215,930,598 bp | 215,868,000 bp | Minor length reduction |
+| **N50** | 131,633,754 bp | 131,826,854 bp | **+ 193.1 kb** |
+| **L50** | 7 | 7 | Maintained macro-structure |
+| **Gaps** | 0 | 92 | Representing 9,200 `N`s |
+
 
 
 
