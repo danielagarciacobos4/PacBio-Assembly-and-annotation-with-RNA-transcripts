@@ -293,16 +293,19 @@ yahs ${ASM} ${WORKDIR}/aligned_hic.sam -o ${PREFIX}
 
 ### Summary of Scaffolding Results
 
-The Hi-C scaffolding was performed using **YaHS**. The tables below demonstrate the structural refinement from the primary `hifiasm` (-l3) contigs to the final Hi-C scaffolds.
+The Hi-C scaffolding was performed using **YaHS**. The tables below demonstrate the structural refinement from the primary `hifiasm` (-l3) contigs to the final Hi-C scaffolds. While the macro-chromosomes (N50) were already highly contiguous prior to scaffolding, the Hi-C data profoundly improved the assembly of smaller chromosomal elements.
 
-| Metric | Primary Contigs (Hifiasm -l3) | Final Scaffolds (YaHS) | Delta / Notes |
+| Metric | Primary Contigs (Hifiasm -l3) | Final Scaffolds (YaHS) | Delta / Improvement |
 | :--- | :--- | :--- | :--- |
 | **Total Length** | 2,167,390,149 bp | 2,167,399,349 bp | **+ 9,200 bp** (Spacer 'N's) |
 | **Total Sequences** | 140 | 178 | **+ 38** (Structural breaks/edits) |
 | **Largest Sequence** | 215,930,598 bp | 215,868,000 bp | Minor length reduction |
 | **N50** | 131,633,754 bp | 131,826,854 bp | **+ 193.1 kb** |
-| **L50** | 7 | 7 | Maintained macro-structure |
-| **Gaps** | 0 | 92 | Representing 9,200 `N`s |
+| **N60** | 101,855,023 bp | 130,083,764 bp | **+ 28.2 Mb** |
+| **N70** | 66,608,817 bp | 98,819,987 bp | **+ 32.2 Mb** |
+| **N80** | 29,352,589 bp | 41,842,707 bp | **+ 12.4 Mb** |
+| **N90** | 15,672,842 bp | 26,947,507 bp | **+ 11.2 Mb** |
+| **Gaps / N_count**| 0 | 92 / 9,200 | Representing 9,200 `N`s |
 
 
 
