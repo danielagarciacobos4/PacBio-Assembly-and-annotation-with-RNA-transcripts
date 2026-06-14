@@ -227,6 +227,22 @@ merqury.sh ${WORKDIR}/reads.meryl ${ASM} ${PREFIX}
 * A Consensus QV of 71.58 is a remarkably high accuracy score, highlighting the immense power of PacBio HiFi's circular consensus sequencing (CCS). It guarantees that the nucleotide sequence exceeds 99.99999% accuracy (less than 1 sequence error per 10 million base pairs)
 * The score of 95.23% means that the vast majority of the biological information sequenced from the snake was successfully stitched into your primary contigs.
 
+
+### Primary Assembly Comparison: `-l3` vs. `-l2` assemblies: 
+
+| Metric | `-l3` (Aggressive Purge) | `-l2` (Moderate Purge) | The Difference |
+| :--- | :--- | :--- | :--- |
+| **Total Length** | 2,167,390,149 bp (~2.16 Gb) | 2,183,292,827 bp (~2.18 Gb) | **+ 15.9 Mb** in `-l2` |
+| **Total Contigs** | 140 | 153 | **+ 13 contigs** in `-l2` |
+| **Largest Contig** | 215,930,598 bp (~215.9 Mb) | 227,656,864 bp (~227.6 Mb) | **+ 11.7 Mb** in `-l2` |
+| **Contig N50** | 131,633,754 bp (~131.6 Mb) | 147,694,758 bp (~147.6 Mb) | **+ 16.0 Mb** in `-l2` |
+| **L50** | 7 | 6 | **1 fewer contig** needed in `-l2` |
+| **BUSCO Complete** | 93.2% | 93.2% | Identical |
+| **BUSCO Single (S)**| 91.6% | 91.5% | - 0.1% in `-l2` |
+| **BUSCO Duplicated (D)**| 1.5% | 1.7% | **+ 0.2%** in `-l2` |
+| **Merqury Completeness**| 95.23% | 95.28% | **+ 0.05%** in `-l2` |
+| **Merqury QV** | 71.57 | 71.51 | Effectively Identical |
+
 ## 4. Chromosome-Level Scaffolding (Hi-C)
 
 ### Objectives
