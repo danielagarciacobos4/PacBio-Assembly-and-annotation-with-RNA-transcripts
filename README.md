@@ -311,9 +311,14 @@ The Hi-C scaffolding was performed using **YaHS**. The tables below demonstrate 
 
 **Structural Error Correction & Gap Introduction:** The scaffolding process introduced 92 physical gaps (exactly 9,200 undefined `N` bases). Concurrently, the total sequence count increased slightly from 140 to 178. This indicates that the algorithm identified structural misassemblies in the initial graph—such as false inversions or chimeric contigs—actively broke them, and re-oriented them using physical proximity constraints to reflect the true biological karyotype.
 
+### Delimiting # scaffolds used for downstream analysis (consensus fastas and phylogenomics)
 
-
-
+| Dataset | Complete (C) | Single-copy (S) | Duplicated (D) | Fragmented (F) | Missing (M) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Hi-C all scaffolds** | 93.2% (6973) | 91.7% (6861) | 1.5% (112) | 1.1% (86) | 5.6% (421) |
+| **Top 60 scaffolds** | 93.1% (6963) | 91.6% (6851) | 1.5% (112) | 1.1% (86) | 5.8% (431) |
+| **Top 30 scaffolds** | 90.5% (6767) | 89.1% (6665) | 1.4% (102) | 1.1% (86) | 8.4% (627) |
+| **Top 25 scaffolds** | 90.1% (6739) | 88.8% (6640) | 1.3% (99) | 1.2% (88) | 8.7% (653) |
 
 
 
